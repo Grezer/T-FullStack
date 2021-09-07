@@ -7,10 +7,51 @@
   </head>
 
   <body>
-    <div class="header">HEADER</div>
-    <div class="menu">MENU</div>
-    <div class="content">CONTENT</div>
-    <div class="additional_information">ADDITIONAL INFORMATION</div>
-    <div class="footer">FOOTER</div>
+    <header>
+      <img class="logo" src="./resources/logo.png" />
+      <section class="centerHeader">HEADER</section>
+    </header>
+
+    <nav>MENU</nav>
+
+    <main>
+      <h1>CONTENT</h1>
+      <h2>Edit user info</h2>
+
+      <form>
+        <br /><br />
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" /><br /><br />
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" /><br /><br />
+
+        <label for="patronymic">Patronymic:</label>
+        <input type="text" id="patronymic" /><br /><br />
+
+        <label for="birthday">Birthday:</label>
+        <input type="text" id="birthday" /><br /><br />
+
+        <label for="sex">Sex:</label>
+        <select id="sex">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        <br /><br />
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" /><br /><br />
+
+        <label for="city">City:</label>
+        <input type="text" id="city" /><br /><br />
+
+        <input type="submit" value="Submit" />
+        <br /><br />
+      </form>
+    </main>
+
+    <aside>ADDITIONAL INFORMATION</aside>
+
+    <footer>FOOTER</footer>
   </body>
 </html>
