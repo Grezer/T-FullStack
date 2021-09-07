@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 
-.header {
+header {
   background-color: khaki;
   height: 150px;
   width: 100%;
@@ -18,7 +18,21 @@ body {
   box-sizing: border-box;
 }
 
-.menu {
+.logo {
+  height: 100px;
+  width: 180px;
+  position: absolute;
+  top: 15%;
+  left: 0%;
+}
+
+.centerHeader {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav {
   background-color: khaki;
   height: 100px;
   width: 100%;
@@ -30,19 +44,26 @@ body {
   box-sizing: border-box;
 }
 
-.content {
+main {
   background-color: khaki;
+  padding-top: 80px;
   height: 800px;
   width: calc(100% - 197px);
   border: 3px solid #ad1e21;
-  line-height: 120px;
   position: absolute;
   top: 244px;
   left: 0px;
   box-sizing: border-box;
 }
 
-.additional_information {
+form {
+  border: 3px solid #ad1e21;
+  width: calc(400px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+aside {
   background-color: khaki;
   height: 400px;
   width: 200px;
@@ -54,7 +75,7 @@ body {
   box-sizing: border-box;
 }
 
-.footer {
+footer {
   background-color: khaki;
   height: 100px;
   width: 100%;

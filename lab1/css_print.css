@@ -6,27 +6,27 @@ body {
   margin: 0;
 }
 
-.header {
+header {
   display: none;
 }
 
-.menu {
+nav {
   display: none;
 }
 
-.additional_information {
+menu {
   display: none;
 }
 
-.footer {
+aside {
   display: none;
 }
 
-.content {
-  background-color: khaki;
+footer {
+  display: none;
+}
+
+content {
   height: 100%;
   width: 100%;
-  border: 3px solid #ad1e21;
-  line-height: 120px;
-  box-sizing: border-box;
 }
