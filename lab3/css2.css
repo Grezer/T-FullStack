@@ -13,7 +13,7 @@ header {
   align-items: center;
   height: 150px;
   width: 100%;
-  border: 3px solid #ad1e21;
+  border: 3px solid #b99595;
   line-height: 150px;
   top: 0%;
   left: 0%;
@@ -48,7 +48,8 @@ nav {
 
 .main_part {
   display: flex;
-  height: calc(100% - 350px);
+  flex-direction: column;
+  height: 100%;
 }
 
 main {
@@ -57,7 +58,7 @@ main {
   flex-direction: column;
   padding-top: 40px;
   height: 100%;
-  width: calc(100% - 197px);
+  width: 100%;
   border: 3px solid #ad1e21;
   top: 244px;
   left: 0px;
@@ -76,8 +77,8 @@ form {
 aside {
   background-color: khaki;
   display: flex;
-  height: 100%;
-  width: 200px;
+  height: 20%;
+  width: 100%;
   border: 3px solid #ad1e21;
   line-height: 120px;
   top: 244px;

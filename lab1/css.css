@@ -46,7 +46,7 @@ nav {
 
 main {
   background-color: khaki;
-  padding-top: 80px;
+  padding-top: 40px;
   height: calc(100% - 350px);
   width: calc(100% - 200px);
   border: 3px solid #ad1e21;
@@ -65,7 +65,7 @@ form {
 
 aside {
   background-color: khaki;
-  height: 400px;
+  height: calc(100% - 350px);
   width: 200px;
   border: 3px solid #ad1e21;
   line-height: 120px;
