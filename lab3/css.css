@@ -55,7 +55,7 @@ main {
   background-color: khaki;
   display: flex;
   flex-direction: column;
-  padding-top: 80px;
+  padding-top: 40px;
   height: 100%;
   width: calc(100% - 197px);
   border: 3px solid #ad1e21;
@@ -76,7 +76,7 @@ form {
 aside {
   background-color: khaki;
   display: flex;
-  height: 400px;
+  height: 100%;
   width: 200px;
   border: 3px solid #ad1e21;
   line-height: 120px;
