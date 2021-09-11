@@ -13,19 +13,28 @@ header {
   align-items: center;
   height: 150px;
   width: 100%;
-  border: 3px solid #b99595;
-  line-height: 150px;
-  top: 0%;
-  left: 0%;
+  border: 3px solid #ad1e21;
   box-sizing: border-box;
 }
 
-.logo {
-  display: flex;
+h1 {
   height: 100px;
-  width: 180px;
-  top: 15%;
-  left: 0%;
+  width: 250px;
+  background: url(./resources/logo.png);
+  background-size: 250px;
+  font-size: 0;
+  margin-top: 25px;
+}
+
+ul {
+  margin-top: 40px;
+  width: 360px;
+  padding: 0px;
+}
+
+ul li {
+  display: inline;
+  margin-right: 30px;
 }
 
 .centerHeader {
@@ -36,20 +45,16 @@ header {
 nav {
   background-color: khaki;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100px;
   width: 100%;
   border: 3px solid #ad1e21;
-  line-height: 100px;
-  top: 147px;
-  left: 0px;
   box-sizing: border-box;
 }
 
 .main_part {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 main {
@@ -60,8 +65,6 @@ main {
   height: 100%;
   width: 100%;
   border: 3px solid #ad1e21;
-  top: 244px;
-  left: 0px;
   box-sizing: border-box;
 }
 
@@ -81,8 +84,6 @@ aside {
   width: 100%;
   border: 3px solid #ad1e21;
   line-height: 120px;
-  top: 244px;
-  right: 0px;
   box-sizing: border-box;
 }
 
@@ -94,7 +95,5 @@ footer {
   width: 100%;
   border: 3px solid #ad1e21;
   line-height: 120px;
-  bottom: 0%;
-  left: 0%;
   box-sizing: border-box;
 }
