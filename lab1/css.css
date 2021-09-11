@@ -18,6 +18,16 @@ header {
   box-sizing: border-box;
 }
 
+h1 {
+  display: block;
+  height: 100px;
+  width: 250px;
+  background: url(./resources/logo.png);
+  background-size: 250px;
+  font-size: 0;
+  margin-top: 25px;
+}
+
 .logo {
   height: 100px;
   width: 180px;
@@ -26,10 +36,15 @@ header {
   left: 0%;
 }
 
-.centerHeader {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+ul {
+  margin-top: 40px;
+  width: 360px;
+  padding: 0px;
+}
+
+ul li {
+  display: inline;
+  margin-right: 30px;
 }
 
 nav {
@@ -37,7 +52,6 @@ nav {
   height: 100px;
   width: 100%;
   border: 3px solid #ad1e21;
-  line-height: 100px;
   position: absolute;
   top: 150px;
   left: 0px;
