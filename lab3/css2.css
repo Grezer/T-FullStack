@@ -27,13 +27,13 @@ h1 {
 }
 
 ul {
-  margin-top: 40px;
-  width: 360px;
-  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 ul li {
-  display: inline;
+  list-style-type: none;
   margin-right: 30px;
 }
 
