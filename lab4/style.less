@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@200&display=swap');
+@button-color: rgb(255, 109, 109);
+@gray: rgb(246, 245, 243);
+@white: rgb(255, 255, 255);
+@raspberries_triangle: rgb(255, 138, 138);
+@designers_background: rgb(50, 57, 105);
+@images_path: 'resources/images/';
 
 body {
   font-family: 'Exo', sans-serif;
   font-weight: 500;
-  color: #282828;
   margin: 0px;
 }
 
@@ -12,29 +17,27 @@ body::-webkit-scrollbar {
 }
 
 header {
-  @media (min-width: 600px) and (max-width: 1200px) {
-    width: 100%;
-    height: 55vw;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url('resources/images/background_0.webp');
+  width: 100%;
+  height: 55vw;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('resources/images/background_0.webp');
+
+  span {
+    font-weight: 300;
+    font-size: 60px;
+    text-align: center;
+    margin: 30px;
   }
 }
 
-header span {
-  font-weight: 300;
-  font-size: 60px;
-  text-align: center;
-  margin: 30px;
-}
-
 #try_button {
-  color: rgb(255, 255, 255);
+  color: @white;
   border-color: transparent;
-  background-color: rgb(255, 109, 109);
+  background-color: @button-color;
   border-radius: 3px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -111,7 +114,7 @@ h3 {
 .features {
   width: 100%;
   height: 700px;
-  background-color: rgb(246, 245, 243);
+  background-color: @gray;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,10 +160,10 @@ h3 {
   align-items: center;
   justify-content: start;
   width: 20%;
-}
 
-.features_item p {
-  text-align: center;
+  p {
+    text-align: center;
+  }
 }
 
 .laptop {
@@ -180,7 +183,7 @@ h3 {
   width: 15%;
   height: 0%;
   position: absolute;
-  border-bottom: 800px solid rgb(255, 138, 138);
+  border-bottom: 800px solid @raspberries_triangle;
   border-right: 500px solid transparent;
   left: 0;
   top: 0;
@@ -215,13 +218,24 @@ h3 {
 
 .reviews {
   width: 100%;
-  height: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-image: url('resources/images/rewviews_background.png');
   background-color: rgb(0, 0, 0);
+
+  @media screen and (min-width: 1350px) {
+    height: 800px;
+  }
+
+  @media screen and (min-width: 900px) and (max-width: 1350px) {
+    height: 1200px;
+  }
+
+  @media screen and (max-width: 900px) {
+    height: 1500px;
+  }
 }
 
 .reviews_peoples {
@@ -246,13 +260,13 @@ h3 {
 
 .review_name {
   font-size: 22px;
-  color: #fff;
+  color: @white;
   margin-bottom: 0px;
 }
 
 .reviews_position {
   font-size: 16px;
-  color: rgb(255, 109, 109);
+  color: @button-color;
   margin: 0px 0px 10px;
 }
 
@@ -270,13 +284,13 @@ h3 {
   width: 100%;
   justify-content: space-evenly;
   flex-wrap: wrap;
-}
 
-.reviews_companies img {
-  margin: 20px 40px;
-  filter: invert(80%);
-  max-width: 100%;
-  height: auto;
+  img {
+    margin: 20px 40px;
+    filter: invert(80%);
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .bottom_features {
@@ -286,78 +300,77 @@ h3 {
   align-items: center;
   flex-direction: column;
   justify-content: end;
-}
 
-.bottom_features p {
-  max-width: 700px;
-  text-align: center;
-  margin-bottom: 70px;
-}
+  p {
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: 70px;
+  }
 
-.bottom_features img {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-width: 40%;
-  width: auto;
-  height: auto;
+  img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 40%;
+    width: auto;
+    height: auto;
+  }
 }
 
 .designers {
-  background-color: rgb(50, 57, 105);
+  background-color: @designers_background;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  h2 {
+    color: @white;
+  }
 
-.designers h2 {
-  color: #fff;
-}
+  h3 {
+    margin-top: 80px;
+  }
 
-.designers h3 {
-  margin-top: 80px;
-}
+  form {
+    display: flex;
+    align-items: end;
+    max-width: 1400px;
+    width: 90%;
+    margin-bottom: 30px;
+  }
 
-.designers form {
-  display: flex;
-  align-items: end;
-  max-width: 1400px;
-  width: 90%;
-  margin-bottom: 30px;
-}
+  input {
+    color: @white;
+    background-color: rgb(70, 76, 119);
+    border-radius: 5px;
+    border: 1px solid @white;
+    max-width: 280px;
+    width: 100%;
+    height: 50px;
+    margin: 15px;
+    padding-left: 30px;
+  }
 
-.designers input {
-  color: #fff;
-  background-color: rgb(70, 76, 119);
-  border-radius: 5px;
-  border: 1px solid #fff;
-  max-width: 280px;
-  width: 100%;
-  height: 50px;
-  margin: 15px;
-  padding-left: 30px;
-}
+  button {
+    color: @white;
+    background-color: @button-color;
+    border: 1px solid @button-color;
+    border-radius: 5px;
+    max-width: 280px;
+    width: 100%;
+    height: 50px;
+    margin: 0px;
+  }
 
-.designers button {
-  color: #fff;
-  background-color: rgb(255, 109, 109);
-  border: 1px solid rgb(255, 109, 109);
-  border-radius: 5px;
-  max-width: 280px;
-  width: 100%;
-  height: 50px;
-  margin: 0px;
-}
-
-.designers div {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: start;
-  max-width: 280px;
-  width: 100%;
-  height: 150px;
-  margin: 15px;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    max-width: 280px;
+    width: 100%;
+    height: 150px;
+    margin: 15px;
+  }
 }
 
 .over_signin {
@@ -379,16 +392,16 @@ h3 {
 }
 
 ::placeholder {
-  color: rgb(246, 245, 243);
+  color: @gray;
 }
 
 .designers_bottom_p {
-  color: rgb(246, 245, 243);
+  color: @gray;
   margin-bottom: 100px;
 }
 
 .designers_bottom_a {
-  color: rgb(246, 245, 243);
+  color: @gray;
 }
 
 footer {
@@ -398,74 +411,30 @@ footer {
   align-items: center;
   height: 400px;
   width: 100%;
-}
 
-footer input {
-  color: #fff;
-  background-color: rgb(246, 246, 246);
-  border-radius: 5px;
-  border: 1px solid #fff;
-  width: 100%;
-  height: 50px;
-  padding-left: 30px;
-}
+  input {
+    color: @white;
+    background-color: rgb(246, 246, 246);
+    border-radius: 5px;
+    border: 1px solid @white;
+    width: 100%;
+    height: 50px;
+    padding-left: 30px;
+  }
 
-footer input::placeholder {
-  color: rgb(148, 148, 148);
-}
+  input::placeholder {
+    color: rgb(148, 148, 148);
+  }
 
-.footer_column {
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  justify-content: start;
-  height: 200px;
-  padding-right: 30px;
-  max-width: 260px;
-  width: 15%;
-}
+  h4 {
+    margin-top: 0px;
+    margin-bottom: 38px;
+  }
 
-.footer_column_with_left_padding {
-  .footer_column;
-  padding-left: 70px;
-  max-width: 170px;
-}
-
-.newsletter_submit {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.newsletter_submit button {
-  width: 70px;
-  height: 50px;
-  background-color: rgb(255, 109, 109);
-  border-color: rgb(255, 109, 109);
-  background-image: url(./resources/images/plane.png);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.footer_companies {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-.footer_companies img {
-  margin: 5px 10px;
-  filter: gray;
-  -webkit-filter: grayscale(1);
-}
-
-footer h4 {
-  margin-top: 0px;
-  margin-bottom: 38px;
-}
-
-footer p {
-  margin-top: 0px;
-  margin-bottom: 5px;
+  p {
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
 }
 
 footer::after {
@@ -475,7 +444,65 @@ footer::after {
   right: 0;
   width: 0%;
   height: 0;
-  border-top: 400px solid rgb(255, 138, 138);
+  border-top: 400px solid @raspberries_triangle;
   border-left: 383px solid transparent;
   z-index: -1;
+}
+
+.footer_column {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: start;
+  height: 200px;
+  max-width: 260px;
+  width: 15%;
+
+  @media screen and (min-width: 1400px) {
+    padding-right: 30px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 1400px) {
+    padding-right: 5px;
+  }
+}
+
+.footer_column_with_left_padding {
+  .footer_column;
+  max-width: 170px;
+
+  @media screen and (min-width: 1400px) {
+    padding-left: 70px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 1400px) {
+    padding-left: 0px;
+  }
+}
+
+.newsletter_submit {
+  display: flex;
+  margin-bottom: 10px;
+
+  button {
+    width: 70px;
+    height: 50px;
+    background-color: @button-color;
+    border-color: @button-color;
+    background-image: url(./resources/images/plane.png);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.footer_companies {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+
+  img {
+    margin: 5px 10px;
+    filter: gray;
+    -webkit-filter: grayscale(1);
+  }
 }
