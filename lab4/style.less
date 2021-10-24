@@ -126,7 +126,7 @@ h2 {
 
 h3 {
   font-size: 16px;
-  color: #ff6d6d;
+  color: @raspberries_triangle;
   margin-bottom: 0px;
 }
 
@@ -244,6 +244,9 @@ h3 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+  }
 }
 
 .macbook {
@@ -253,6 +256,12 @@ h3 {
   max-width: 40%;
   width: auto;
   height: auto;
+
+  @media screen and (max-width: 900px) {
+    max-width: 400px;
+    width: auto;
+    height: auto;
+  }
 }
 
 .laptop_text {
@@ -262,6 +271,22 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  @media screen and (max-width: 900px) {
+    width: 90%;
+  }
+
+  h3 {
+    @media screen and (max-width: 900px) {
+      color: #000000;
+    }
+  }
+
+  span {
+    color: @raspberries_triangle;
+    @media screen and (max-width: 900px) {
+      color: #000000;
+    }
+  }
 }
 
 .reviews {
