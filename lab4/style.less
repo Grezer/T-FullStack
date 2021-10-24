@@ -406,11 +406,19 @@ h3 {
 
 footer {
   display: flex;
-  justify-content: space-between;
   justify-content: end;
   align-items: center;
   height: 400px;
   width: 100%;
+
+  @media screen and (max-width: 1100px) {
+    justify-content: space-evenly;
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    height: 800px;
+  }
 
   input {
     color: @white;
@@ -429,6 +437,9 @@ footer {
   h4 {
     margin-top: 0px;
     margin-bottom: 38px;
+    @media screen and (max-width: 800px) {
+      margin-bottom: 10px;
+    }
   }
 
   p {
@@ -438,15 +449,17 @@ footer {
 }
 
 footer::after {
-  content: '';
-  position: relative;
-  top: 0px;
-  right: 0;
-  width: 0%;
-  height: 0;
-  border-top: 400px solid @raspberries_triangle;
-  border-left: 383px solid transparent;
-  z-index: -1;
+  @media screen and (min-width: 1100px) {
+    content: '';
+    position: relative;
+    top: 0px;
+    right: 0;
+    width: 0%;
+    height: 0;
+    border-top: 400px solid @raspberries_triangle;
+    border-left: 383px solid transparent;
+    z-index: -1;
+  }
 }
 
 .footer_column {
@@ -454,7 +467,7 @@ footer::after {
   align-items: start;
   flex-direction: column;
   justify-content: start;
-  height: 200px;
+  height: 150px;
   max-width: 260px;
   width: 15%;
 
@@ -462,20 +475,29 @@ footer::after {
     padding-right: 30px;
   }
 
-  @media screen and (min-width: 600px) and (max-width: 1400px) {
+  @media screen and (min-width: 800px) and (max-width: 1400px) {
     padding-right: 5px;
+    width: 25%;
+  }
+
+  @media screen and (max-width: 800px) {
+    align-items: center;
+    padding-right: 0px;
+    width: 90%;
+    max-width: 90%;
   }
 }
 
 .footer_column_with_left_padding {
   .footer_column;
-  max-width: 170px;
 
   @media screen and (min-width: 1400px) {
+    max-width: 170px;
     padding-left: 70px;
   }
 
   @media screen and (min-width: 600px) and (max-width: 1400px) {
+    max-width: 170px;
     padding-left: 0px;
   }
 }
@@ -483,6 +505,10 @@ footer::after {
 .newsletter_submit {
   display: flex;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 800px) {
+    width: 90%;
+  }
 
   button {
     width: 70px;
