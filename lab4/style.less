@@ -301,10 +301,21 @@ h3 {
   flex-direction: column;
   justify-content: end;
 
+  @media screen and (max-width: 600px) {
+    height: 600px;
+  }
+
   p {
     max-width: 700px;
     text-align: center;
     margin-bottom: 70px;
+    @media screen and (max-width: 600px) {
+      max-width: 90%;
+    }
+  }
+
+  h2 {
+    text-align: center;
   }
 
   img {
@@ -314,6 +325,7 @@ h3 {
     min-width: 40%;
     width: auto;
     height: auto;
+    max-width: 90%;
   }
 }
 
@@ -322,8 +334,10 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   h2 {
     color: @white;
+    text-align: center;
   }
 
   h3 {
@@ -336,6 +350,11 @@ h3 {
     max-width: 1400px;
     width: 90%;
     margin-bottom: 30px;
+
+    @media screen and (max-width: 1300px) {
+      align-items: center;
+      flex-direction: column;
+    }
   }
 
   input {
