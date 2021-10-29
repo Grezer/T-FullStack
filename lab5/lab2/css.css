@@ -1,0 +1,99 @@
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+header {
+  background-color: khaki;
+  display: flex;
+  align-items: center;
+  height: 150px;
+  width: 100%;
+  border: 3px solid #ad1e21;
+  box-sizing: border-box;
+}
+
+h1 {
+  height: 100px;
+  width: 250px;
+  background: url(./resources/logo.png);
+  background-size: 250px;
+  font-size: 0;
+  margin-top: 25px;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+ul li {
+  list-style-type: none;
+  margin-right: 30px;
+}
+
+.centerHeader {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav {
+  background-color: khaki;
+  display: flex;
+  justify-content: flex-start;
+  height: 100px;
+  width: 100%;
+  border: 3px solid #ad1e21;
+  box-sizing: border-box;
+}
+
+.main_part {
+  display: flex;
+  height: calc(100% - 350px);
+}
+
+main {
+  background-color: khaki;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  height: 100%;
+  width: calc(100% - 197px);
+  border: 3px solid #ad1e21;
+  box-sizing: border-box;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #ad1e21;
+  width: calc(400px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+aside {
+  background-color: khaki;
+  display: flex;
+  height: 100%;
+  width: 200px;
+  border: 3px solid #ad1e21;
+  line-height: 120px;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: khaki;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  border: 3px solid #ad1e21;
+  line-height: 120px;
+  box-sizing: border-box;
+}
