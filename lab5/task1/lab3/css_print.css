@@ -1,0 +1,32 @@
+body {
+  height: 100%;
+  display: table;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+header {
+  display: none;
+}
+
+nav {
+  display: none;
+}
+
+menu {
+  display: none;
+}
+
+aside {
+  display: none;
+}
+
+footer {
+  display: none;
+}
+
+content {
+  height: 100%;
+  width: 100%;
+}

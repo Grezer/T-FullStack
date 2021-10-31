@@ -1,0 +1,92 @@
+body {
+  height: 100%;
+  display: table;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+header {
+  background-color: khaki;
+  height: 150px;
+  width: 100%;
+  border: 3px solid #ad1e21;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  box-sizing: border-box;
+}
+
+h1 {
+  height: 100px;
+  width: 250px;
+  background: url(./resources/logo.png);
+  background-size: 250px;
+  font-size: 0;
+  margin-top: 25px;
+}
+
+ul {
+  margin-top: 40px;
+  width: 360px;
+  padding: 0px;
+}
+
+ul li {
+  display: inline;
+  margin-right: 30px;
+}
+
+nav {
+  background-color: khaki;
+  height: 100px;
+  width: 100%;
+  border: 3px solid #ad1e21;
+  position: absolute;
+  top: 150px;
+  left: 0px;
+  box-sizing: border-box;
+}
+
+main {
+  background-color: khaki;
+  padding-top: 40px;
+  height: calc(100% - 350px);
+  width: calc(100% - 200px);
+  border: 3px solid #ad1e21;
+  position: absolute;
+  top: 250px;
+  left: 0px;
+  box-sizing: border-box;
+}
+
+form {
+  border: 3px solid #ad1e21;
+  width: calc(400px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+aside {
+  background-color: khaki;
+  height: calc(100% - 350px);
+  width: 200px;
+  border: 3px solid #ad1e21;
+  line-height: 120px;
+  position: absolute;
+  top: 250px;
+  right: 0px;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: khaki;
+  height: 100px;
+  width: 100%;
+  border: 3px solid #ad1e21;
+  line-height: 120px;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  box-sizing: border-box;
+}
