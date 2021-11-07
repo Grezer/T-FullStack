@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <button onclick="loadRSS()">Load RSS</button>
+    <button onclick="loadJSON()">Load JSON</button>
+    <select id="countSelect">
+      <option>100</option>
+      <option>200</option>
+      <option>500</option>
+      <option>1000</option>
+      <option>10000</option>
+    </select>
+
+    <button onclick="clearContainer()">Clear</button>
+    <div id="displayingTime"></div>
+    <div id="processingTime"></div>
+    <div id="contentContainer"></div>
+
+    <script>
+      const container = document.getElementById('contentContainer')
+      const processingTime = document.getElementById('processingTime')
+      const displayingTime = document.getElementById('displayingTime')
+
+      const clearContainer = () => {
+        container.innerHTML = ''
+        processingTime.innerHTML = ''
+        displayingTime.innerHTML = ''
+      }
+
+      const getSelectedOption = () => {
+        return document.getElementById('countSelect').value
+      }
+
+      const setDisplayingTime = (startTime, finishTime) => {
+        displayingTime.innerHTML = `Displaying time: ${
+          finishTime - startTime
+        } ms`
+      }
+
+      const setProcessingTime = (startTime, finishTime) => {
+        processingTime.innerHTML = `Processing time: ${
+          finishTime - startTime
+        } ms`
+      }
+
+      const loadData = (url, callback) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', url, true)
+        xhr.onload = callback
+        xhr.send()
+      }
+
+      const displayRow = (title, description) => {
+        const div = document.createElement('div')
+        div.appendChild(document.createElement('h2')).innerHTML = title
+        div.appendChild(document.createElement('p')).innerHTML = description
+        container.appendChild(div)
+      }
+
+      const loadRSS = () => {
+        clearContainer()
+
+        const processingStartTime = new Date()
+        const url = `data/rss/${getSelectedOption()}.rss`
+
+        loadData(url, (e) => {
+          const displayingStartTime = new Date().getTime()
+
+          const content = e.target.response
+          const dom = new DOMParser().parseFromString(
+            content,
+            'application/xml'
+          )
+
+          for (const item of dom.getElementsByTagName('item')) {
+            const title = item.getElementsByTagName('title')[0].innerHTML
+            const description =
+              item.getElementsByTagName('description')[0].innerHTML
+            displayRow(title, description)
+          }
+
+          setDisplayingTime(displayingStartTime, new Date())
+          setProcessingTime(processingStartTime, new Date())
+        })
+      }
+
+      const loadJSON = () => {
+        clearContainer()
+
+        const processingStartTimestamp = new Date()
+        const url = `data/json/${getSelectedOption()}.json`
+
+        loadData(url, (e) => {
+          const displayingStartTimestamp = new Date()
+
+          const content = e.target.response
+          const json = JSON.parse(content)
+
+          for (let item of json.rss.channel.item) {
+            const title = item.title
+            const description = item.description
+            displayRow(title, description)
+          }
+
+          setDisplayingTime(displayingStartTimestamp, new Date())
+          setProcessingTime(processingStartTimestamp, new Date())
+        })
+      }
+    </script>
+  </body>
+</html>
