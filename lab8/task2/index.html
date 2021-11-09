@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 8</title>
+    <style type="text/css">
+      .book-content {
+        max-width: 900px;
+        width: 80vw;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let itsFirstLoad = true
+      const loadChapter = async (page) => {
+        const chapter = await fetch(`data/glava${page}.html`)
+        const text = await chapter.text()
+
+        let elem = document.createElement('div')
+        elem.setAttribute('id', page)
+        elem.innerHTML = text
+        document.body.appendChild(elem)
+      }
+
+      const checkLoading = async () => {
+        const rect = document.body.getBoundingClientRect()
+        if (rect.bottom - window.innerHeight <= 10) {
+          const urlParams = new URLSearchParams(window.location.search)
+          const nowPage = parseInt(urlParams.get('page'))
+          if (nowPage + 1 > 9) return
+          await loadChapter(nowPage + 1)
+          rewriteURL(nowPage + 1)
+        }
+      }
+
+      const rewriteURL = (page) => {
+        history.pushState(null, null, '/?page=' + page)
+      }
+
+      const start = async () => {
+        const urlParams = new URLSearchParams(window.location.search)
+        if (urlParams.get('page')) {
+          for (let i = 1; i <= parseInt(urlParams.get('page')); i++) {
+            await loadChapter(i)
+          }
+          rewriteURL(parseInt(urlParams.get('page')))
+          const actualChapter = document.getElementById(urlParams.get('page'))
+
+          actualChapter.scrollIntoView()
+        } else {
+          await loadChapter(1)
+          rewriteURL(1)
+        }
+
+        window.addEventListener('scroll', checkLoading)
+        checkLoading()
+      }
+
+      start()
+    </script>
+  </body>
+</html>
