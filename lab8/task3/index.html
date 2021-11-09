@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 8</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        min-height: 110vh;
+      }
+      .book-content {
+        max-width: 900px;
+        width: 80vw;
+        margin: auto;
+      }
+      .book-content > div {
+        padding: 100px 0 400px 0;
+      }
+    </style>
+  </head>
+  <body onScroll="checkHeight()">
+    <div id="bookBody" class="book-content"></div>
+
+    <script type="text/javascript">
+      let currentScrollTop = 1
+      let minScroll = 1
+      const checkHeight = () => {
+        let A = Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.offsetHeight,
+          document.body.clientHeight,
+          document.documentElement.clientHeight
+        )
+
+        let B = window.pageYOffset || document.documentElement.scrollTop
+        let C = document.documentElement.clientHeight
+        let deltaScrollTop = B - currentScrollTop
+        currentScrollTop = B
+
+        if (deltaScrollTop > 0) {
+          if (A == B + C) {
+            showNextPage()
+          }
+        }
+        if (deltaScrollTop < 0) {
+          if (B == 0) {
+            showPreviousPage()
+          }
+        }
+      }
+
+      const setMinScroll = () => {
+        window.scrollTo(0, minScroll)
+        currentScrollTop = minScroll
+      }
+
+      setMinScroll()
+
+      const showNextPage = () => {
+        if (currentSection == 9) {
+          return
+        }
+        setTimeout(() => {
+          showPage(++currentSection)
+        }, 250)
+      }
+
+      const showPreviousPage = () => {
+        if (currentSection == 1) {
+          return
+        }
+        setTimeout(() => {
+          showPage(--currentSection)
+        }, 250)
+      }
+
+      let loading
+      const bookBody = document.getElementById('bookBody')
+      const sectionFromUrl = new URLSearchParams(window.location.search).get(
+        'page'
+      )
+
+      let currentSection = sectionFromUrl ? sectionFromUrl : 1
+
+      const loadSection = (page, callback) => {
+        fetch(`data/glava${page}.html`)
+          .then((x) => x.text())
+          .then((x) => callback(x))
+      }
+
+      const displaySection = (page, callback) => {
+        loadSection(page, (content) => {
+          bookBody.innerHTML = '<div>' + content + '</div>'
+          if (callback) callback()
+        })
+      }
+
+      const showPage = (pageNumber) => {
+        if (loading) return
+        loading = true
+        displaySection(pageNumber, () => {
+          loading = false
+          history.pushState(null, null, '?page=' + currentSection)
+          setMinScroll()
+        })
+      }
+
+      displaySection(currentSection)
+    </script>
+  </body>
+</html>
