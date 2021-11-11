@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Task 9</title>
+  </head>
+  <body>
+    <button onclick="loadRSS()">Load RSS</button>
+    <button onclick="loadJSON()">Load JSON</button>
+    <select id="countSelect">
+      <option>10</option>
+      <option>50</option>
+      <option>100</option>
+      <option>200</option>
+    </select>
+
+    <button onclick="clearContainer()">Clear</button>
+
+    <div id="displayingTime"></div>
+    <div id="processingTime"></div>
+    <div id="contentContainer"></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const clearContainer = () => {
+        $('#contentContainer,#displayingTime,#processingTime').each(
+          function () {
+            $(this).html('')
+          }
+        )
+      }
+
+      const getSelectedOption = () => {
+        return $('#countSelect').children('option:selected').val()
+      }
+
+      const setDisplayingTime = (startTime, finishTime) => {
+        $('#displayingTime').html(
+          `Displaying time: ${finishTime - startTime} ms`
+        )
+      }
+
+      const setProcessingTime = (startTime, finishTime) => {
+        $('#processingTime').html(
+          `Processing time: ${finishTime - startTime} ms`
+        )
+      }
+
+      const loadData = (url, callback) => {
+        $.ajax({
+          type: 'GET',
+          url: url,
+          async: true,
+          success: callback,
+        })
+      }
+
+      const displayRow = (title, description) => {
+        let div = $('<div />')
+        let h2 = $(`<h2>${title}</h2>`)
+        let p = $(`<p>${description}</p>`)
+        div.append(h2)
+        div.append(p)
+        $('#contentContainer').append(div)
+      }
+
+      const loadRSS = () => {
+        clearContainer()
+
+        const processingStartTime = performance.now()
+        const url = `data/rss/${getSelectedOption()}.rss`
+
+        loadData(url, (e) => {
+          const displayingStartTime = performance.now()
+
+          for (const item of e.getElementsByTagName('item')) {
+            const title = item.getElementsByTagName('title')[0].innerHTML
+            const description =
+              item.getElementsByTagName('description')[0].innerHTML
+            displayRow(title, description)
+          }
+
+          setDisplayingTime(displayingStartTime, performance.now())
+          setProcessingTime(processingStartTime, performance.now())
+        })
+      }
+
+      const loadJSON = () => {
+        clearContainer()
+
+        const processingStartTimestamp = performance.now()
+        const url = `data/json/${getSelectedOption()}.json`
+
+        loadData(url, (e) => {
+          const displayingStartTimestamp = performance.now()
+
+          for (let item of e.rss.channel.item) {
+            const title = item.title
+            const description = item.description
+            displayRow(title, description)
+          }
+
+          setDisplayingTime(displayingStartTimestamp, performance.now())
+          setProcessingTime(processingStartTimestamp, performance.now())
+        })
+      }
+    </script>
+  </body>
+</html>
