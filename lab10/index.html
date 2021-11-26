@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>TASK 10</title>
+    <style type="text/css">
+      body {
+        height: 100vh;
+        width: 100vh;
+        margin: 0;
+      }
+
+      textarea {
+        width: 50%;
+        height: 100%;
+      }
+
+      .editors {
+        margin: 40px;
+        height: 80%;
+        display: flex;
+      }
+
+      .button_div {
+        display: flex;
+        justify-content: center;
+      }
+
+      button {
+        width: 300px;
+        height: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="editors">
+      <textarea id="xmlTextArea" placeholder="Input XML"></textarea>
+      <textarea id="jsonTextArea" placeholder="JSON result"></textarea>
+    </div>
+    <div class="button_div">
+      <button onclick="convertXmlToJSON()">Convert</button>
+    </div>
+
+    <script type="text/javascript">
+      const xmlTextArea = document.getElementById('xmlTextArea')
+      const jsonTextArea = document.getElementById('jsonTextArea')
+
+      function convertXmlToJSON() {
+        const dom = new DOMParser().parseFromString(
+          xmlTextArea.value.replace(/\s+/g, ' ').trim(),
+          'application/xml'
+        )
+        console.log('dom: ', dom)
+
+        var obj = jsontoStr(setJsonObj(dom))
+
+        // const obj = addChilds(dom, {})
+        console.log('obj: ', obj)
+        jsonTextArea.value = obj
+      }
+
+      var setJsonObj = function (xml) {
+        var js_obj = {}
+        if (xml.nodeType == 1) {
+          if (xml.attributes.length > 0) {
+            js_obj['@attributes'] = {}
+            for (var j = 0; j < xml.attributes.length; j++) {
+              var attribute = xml.attributes.item(j)
+              js_obj['@attributes'][attribute.nodeName] = attribute.value
+            }
+          }
+        } else if (xml.nodeType == 3) {
+          js_obj = xml.nodeValue
+        }
+        if (xml.hasChildNodes()) {
+          for (var i = 0; i < xml.childNodes.length; i++) {
+            var item = xml.childNodes.item(i)
+            var nodeName = item.nodeName
+            if (typeof js_obj[nodeName] == 'undefined') {
+              js_obj[nodeName] = setJsonObj(item)
+            } else {
+              if (typeof js_obj[nodeName].push == 'undefined') {
+                var old = js_obj[nodeName]
+                js_obj[nodeName] = []
+                js_obj[nodeName].push(old)
+              }
+              js_obj[nodeName].push(setJsonObj(item))
+            }
+          }
+        }
+        return js_obj
+      }
+
+      var jsontoStr = function (js_obj) {
+        var rejsn = JSON.stringify(js_obj, undefined, 2)
+          .replace(/(\\t|\\r|\\n)/g, '')
+          .replace(/"",[\n\t\r\s]+""[,]*/g, '')
+          .replace(/(\n[\t\s\r]*\n)/g, '')
+          .replace(/[\s\t]{2,}""[,]{0,1}/g, '')
+          .replace(/"[\s\t]{1,}"[,]{0,1}/g, '')
+          .replace(/\[[\t\s]*\]/g, '""')
+        return rejsn.indexOf('"parsererror": {') == -1
+          ? rejsn
+          : 'Invalid XML format'
+      }
+    </script>
+  </body>
+</html>
