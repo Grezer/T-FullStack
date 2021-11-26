@@ -21,7 +21,7 @@
         display: flex;
       }
 
-      .button_div {
+      .bottom_divs {
         display: flex;
         justify-content: center;
       }
@@ -37,50 +37,58 @@
       <textarea id="xmlTextArea" placeholder="Input XML"></textarea>
       <textarea id="jsonTextArea" placeholder="JSON result"></textarea>
     </div>
-    <div class="button_div">
+    <div class="bottom_divs">
       <button onclick="convertXmlToJSON()">Convert</button>
+    </div>
+    <div class="bottom_divs">
+      <div id="processingTime"></div>
     </div>
 
     <script type="text/javascript">
+      const processingTime = document.getElementById('processingTime')
       const xmlTextArea = document.getElementById('xmlTextArea')
       const jsonTextArea = document.getElementById('jsonTextArea')
 
-      function convertXmlToJSON() {
+      const setProcessingTime = (startTime, finishTime) => {
+        processingTime.innerHTML = `Processing time: ${
+          finishTime - startTime
+        } ms`
+      }
+
+      const convertXmlToJSON = () => {
+        const processingStartTime = performance.now()
         const dom = new DOMParser().parseFromString(
           xmlTextArea.value.replace(/\s+/g, ' ').trim(),
           'application/xml'
         )
-        console.log('dom: ', dom)
-
-        var obj = jsontoStr(setJsonObj(dom))
-
-        // const obj = addChilds(dom, {})
-        console.log('obj: ', obj)
-        jsonTextArea.value = obj
+        jsonTextArea.value = jsontoStr(setJsonObj(dom))
+        setProcessingTime(processingStartTime, performance.now())
       }
 
-      var setJsonObj = function (xml) {
-        var js_obj = {}
+      const setJsonObj = (xml) => {
+        let js_obj = {}
+
         if (xml.nodeType == 1) {
           if (xml.attributes.length > 0) {
             js_obj['@attributes'] = {}
-            for (var j = 0; j < xml.attributes.length; j++) {
-              var attribute = xml.attributes.item(j)
+            for (let j = 0; j < xml.attributes.length; j++) {
+              let attribute = xml.attributes.item(j)
               js_obj['@attributes'][attribute.nodeName] = attribute.value
             }
           }
         } else if (xml.nodeType == 3) {
           js_obj = xml.nodeValue
         }
+
         if (xml.hasChildNodes()) {
-          for (var i = 0; i < xml.childNodes.length; i++) {
-            var item = xml.childNodes.item(i)
-            var nodeName = item.nodeName
+          for (let i = 0; i < xml.childNodes.length; i++) {
+            let item = xml.childNodes.item(i)
+            let nodeName = item.nodeName
             if (typeof js_obj[nodeName] == 'undefined') {
               js_obj[nodeName] = setJsonObj(item)
             } else {
               if (typeof js_obj[nodeName].push == 'undefined') {
-                var old = js_obj[nodeName]
+                let old = js_obj[nodeName]
                 js_obj[nodeName] = []
                 js_obj[nodeName].push(old)
               }
@@ -91,8 +99,8 @@
         return js_obj
       }
 
-      var jsontoStr = function (js_obj) {
-        var rejsn = JSON.stringify(js_obj, undefined, 2)
+      const jsontoStr = (js_obj) => {
+        let rejsn = JSON.stringify(js_obj, undefined, 2)
           .replace(/(\\t|\\r|\\n)/g, '')
           .replace(/"",[\n\t\r\s]+""[,]*/g, '')
           .replace(/(\n[\t\s\r]*\n)/g, '')
