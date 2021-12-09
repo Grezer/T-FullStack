@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html amp lang="en">
   <head>
     <meta charset="utf-8" />
@@ -699,6 +700,11 @@
       </style></noscript
     >
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script
+      async
+      custom-element="amp-form"
+      src="https://cdn.ampproject.org/v0/amp-form-0.1.js"
+    ></script>
   </head>
   <body>
     <header>
@@ -877,7 +883,11 @@
     <section class="designers">
       <h3>NEW FEATURES</h3>
       <h2>Over 1000 designers are using ...</h2>
-      <form>
+      <form
+        method="post"
+        action-xhr="https://example.com/subscribe"
+        target="_top"
+      >
         <input id="name" size="30" placeholder="FULL NAME" />
         <input
           type="email"
